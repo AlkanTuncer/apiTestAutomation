@@ -57,7 +57,7 @@ public class _01_SimpleGetRequest {
         Assert.assertEquals(response.statusCode(),200);
         System.out.println("StatusCode : "+response.statusCode());
 
-        Assert.assertTrue(response.body().asString().contains("Fabio"),"Test FAILED - Name ");
+        Assert.assertTrue(response.body().asString().contains("Jessica"),"Test FAILED - Name ");
     }
 
 }
