@@ -121,4 +121,25 @@ public class _01_SimpleGetRequest {
         response.getTime();                    // response gerceklesme süresini verir.
     }
 
+    /*
+     * https://restful-booker.herokuapp.com/booking/250 url’ine bir GET request
+     * gonderdigimizde donen Response’un,
+     * status code’unun 200,
+     * ve content type’inin application/json; charset=utf-8,
+     * ve Server isimli Header’in degerinin Cowboy,
+     * ve status Line’in HTTP/1.1 200 OK
+     * ve response suresinin 5 sn’den kisa oldugunu manuel olarak test ediniz.
+     */
+
+    @Test
+    public void testTask03(){
+        Response response = RestAssured.get(herokuURL+"/booking/250");
+
+        Assert.assertEquals(response.statusCode(),200);
+        Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
+        Assert.assertEquals(response.header("Server"),"Cowboy");
+        Assert.assertEquals(response.statusLine(),"HTTP/1.1 200 OK");
+        Assert.assertTrue(response.getTime()<5000);
+
+    }
 }
