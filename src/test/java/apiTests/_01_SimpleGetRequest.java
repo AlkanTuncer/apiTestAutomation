@@ -10,11 +10,11 @@ import static io.restassured.RestAssured.*;
 
 public class _01_SimpleGetRequest {
 
-    String herokuURL = "https://restful-booker.herokuapp.com/booking";
+    String herokuURL = "https://restful-booker.herokuapp.com";
 
     @Test
     public void test01(){
-        Response response = RestAssured.get(herokuURL);
+        Response response = RestAssured.get(herokuURL+"/booking");
 
         // print the status code
         System.out.println("StatusCode : "+response.statusCode());
@@ -25,7 +25,7 @@ public class _01_SimpleGetRequest {
 
     @Test
     public void test02(){
-        Response response = RestAssured.get(herokuURL);
+        Response response = RestAssured.get(herokuURL+"/booking");
 
         // print the json body
         response.prettyPrint();
@@ -33,7 +33,7 @@ public class _01_SimpleGetRequest {
 
     @Test
     public void test03(){
-        Response response = RestAssured.get(herokuURL);
+        Response response = RestAssured.get(herokuURL+"/booking");
 
         Assert.assertEquals(response.statusCode(),200);
         Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
@@ -42,7 +42,7 @@ public class _01_SimpleGetRequest {
     @Test
     public void test04(){
         given().accept(ContentType.JSON)
-                .when().get(herokuURL)
+                .when().get(herokuURL+"/booking")
                 .then().assertThat().statusCode(200)
                 .and().assertThat().contentType("application/json; charset=utf-8");
     }
@@ -50,7 +50,7 @@ public class _01_SimpleGetRequest {
     @Test
     public void test05(){
         Response response = given().accept("application/json")
-                .when().get(herokuURL + "/53");
+                .when().get(herokuURL + "/booking/53");
 
         response.prettyPrint();
 
