@@ -108,4 +108,17 @@ public class _01_SimpleGetRequest {
                 .and().assertThat().body("firstname",Matchers.equalTo("Howard"));
     }
 
+    @Test
+    public void test06(){
+        Response response = given().get(herokuURL+"/booking");
+
+        response.prettyPrint();                // response'u yazdırır.
+        response.getStatusCode();              // status code'u yazdırır.
+        response.getHeaders();                 // tüm header'ları yazdırır.
+        response.getHeader("Server");    // istenen header'ı yazdırır.
+        response.getContentType();             // response content type'ı yazdırır.
+        response.getStatusLine();              // response status line'ı yazdırır.
+        response.getTime();                    // response gerceklesme süresini verir.
+    }
+
 }
