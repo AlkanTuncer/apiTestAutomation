@@ -78,6 +78,8 @@ public class _01_SimpleGetRequest {
         Response response = RestAssured.get(herokuURL+"/booking/100");
         Assert.assertEquals(response.header("Server"),"Cowboy");
         Assert.assertEquals(response.statusLine(),"HTTP/1.1 200 OK");
+
+        response.prettyPrint();
     }
 
 }
