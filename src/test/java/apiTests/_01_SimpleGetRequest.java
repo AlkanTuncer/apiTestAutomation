@@ -89,7 +89,7 @@ public class _01_SimpleGetRequest {
     /* TASK
     When users sends a get request to /booking/150
     Then status code should be 200
-    And content type should be application/json;charset=UTF-8
+    And content type should be application/json; charset=UTF-8
     And json body should contain Howard
     */
 
