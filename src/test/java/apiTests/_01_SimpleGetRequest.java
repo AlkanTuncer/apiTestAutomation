@@ -86,6 +86,13 @@ public class _01_SimpleGetRequest {
                 .and().assertThat().statusLine("HTTP/1.1 200 OK");
     }
 
+    /* TASK
+    When users sends a get request to /booking/150
+    Then status code should be 200
+    And content type should be application/json;charset=UTF-8
+    And json body should contain Howard
+    */
+
     @Test
     public void testTask02(){
         Response response = RestAssured.get(herokuURL+"/booking/150");
