@@ -3,6 +3,7 @@ package apiTests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -100,6 +101,11 @@ public class _01_SimpleGetRequest {
         Assert.assertEquals(response.statusCode(),200);
         Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
         Assert.assertTrue(response.body().asString().contains("Howard"));
+
+        given().get(herokuURL+"/booking/150")
+                .then().assertThat().statusCode(200)
+                .and().assertThat().contentType("application/json; charset=utf-8")
+                .and().assertThat().body("firstname",Matchers.equalTo("Howard"));
     }
 
 }
