@@ -86,4 +86,13 @@ public class _01_SimpleGetRequest {
                 .and().assertThat().statusLine("HTTP/1.1 200 OK");
     }
 
+    @Test
+    public void testTask02(){
+        Response response = RestAssured.get(herokuURL+"/booking/150");
+
+        Assert.assertEquals(response.statusCode(),200);
+        Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
+        Assert.assertTrue(response.body().asString().contains("Howard"));
+    }
+
 }
