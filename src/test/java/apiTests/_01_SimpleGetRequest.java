@@ -71,15 +71,19 @@ public class _01_SimpleGetRequest {
 
     @Test
     public void testTask(){
-        given().get(herokuURL+"/booking/100")
-                .then().assertThat().statusCode(200)
-                .and().assertThat().contentType("application/json; charset=utf-8");
-
         Response response = RestAssured.get(herokuURL+"/booking/100");
+        response.prettyPrint();
+
+        Assert.assertEquals(response.statusCode(),200);
+        Assert.assertEquals(response.contentType(),"application/json; charset=utf-8");
         Assert.assertEquals(response.header("Server"),"Cowboy");
         Assert.assertEquals(response.statusLine(),"HTTP/1.1 200 OK");
 
-        response.prettyPrint();
+        given().get(herokuURL+"/booking/100")
+                .then().assertThat().statusCode(200)
+                .and().assertThat().contentType("application/json; charset=utf-8")
+                .and().assertThat().header("Server","Cowboy")
+                .and().assertThat().statusLine("HTTP/1.1 200 OK");
     }
 
 }
