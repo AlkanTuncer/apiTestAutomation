@@ -60,4 +60,24 @@ public class _01_SimpleGetRequest {
         Assert.assertTrue(response.body().asString().contains("Jessica"),"Test FAILED - Name ");
     }
 
+    /*
+     * https://restful-booker.herokuapp.com/booking/100 url’ine bir GET request
+     * gonderdigimizde donen Response’un,
+     * status code’unun 200,
+     * ve content type’inin application/json; charset=utf-8,
+     * ve Server isimli Header’in degerinin Cowboy,
+     * ve status Line’in HTTP/1.1 200 OK
+     */
+
+    @Test
+    public void testTask(){
+        given().get(herokuURL+"/booking/100")
+                .then().assertThat().statusCode(200)
+                .and().assertThat().contentType("application/json; charset=utf-8");
+
+        Response response = RestAssured.get(herokuURL+"/booking/100");
+        Assert.assertEquals(response.header("Server"),"Cowboy");
+        Assert.assertEquals(response.statusLine(),"HTTP/1.1 200 OK");
+    }
+
 }
