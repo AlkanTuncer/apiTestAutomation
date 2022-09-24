@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class _03_SprinGular {
+public class _03_SprinGularGetRequest {
 
     String sprinGularURL = "http://142.93.110.12:9119";
     String accessToken = "Bearer" +
@@ -19,6 +19,27 @@ public class _03_SprinGular {
                 .when().get(sprinGularURL+"/api/orders");
 
         Assert.assertEquals(response.statusCode(),200);
+    }
+
+    // orderID si 4003 olan order ı print ediniz.
+
+    @Test
+    public void test2() {
+
+        Response response = given().header("Authorization", accessToken)
+                .when().get(sprinGularURL + "/api/orders?orderid=4003");
+
+        response.prettyPrint();
+    }
+
+    // orderID si 4500 olan order ı print ediniz.
+    //status code 200 olduğunu test ediniz.
+
+    @Test
+    public void test3(){
+        Response response= given().header("Authorization", accessToken)
+                .when().get(sprinGularURL + "/api/orders?orderid=4500");
+        response.prettyPrint();
     }
 
 }
