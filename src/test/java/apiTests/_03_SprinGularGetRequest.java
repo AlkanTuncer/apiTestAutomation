@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class _03_SprinGular {
+public class _03_SprinGularGetRequest {
 
     String sprinGularURL = "http://142.93.110.12:9119";
     String accessToken = "Bearer" +
