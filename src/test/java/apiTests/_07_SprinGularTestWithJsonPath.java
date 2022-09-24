@@ -7,9 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
-import java.util.Collection;
-import java.util.List;
-
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.*;
