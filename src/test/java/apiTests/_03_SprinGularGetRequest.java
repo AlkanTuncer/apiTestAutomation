@@ -10,8 +10,7 @@ public class _03_SprinGularGetRequest {
 
     String sprinGularURL = "http://142.93.110.12:9119";
     String accessToken = "Bearer" +
-            " eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjM3MDU4OTIsInN1YiI6Ik1yaW5tb3lNYWp1bWRhciIsInVzZX" +
-            "JJZCI6Imd1aWRlcnNvZnQiLCJyb2xlIjoiVVNFUiJ9.NA2d2-IEP6xRUkkDz5Su7anNDEctK4bAp68HVqfdt8g";
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjQwNDA0NTEsInN1YiI6Ik1yaW5tb3lNYWp1bWRhciIsInVzZXJJZCI6Imd1aWRlcnNvZnQiLCJyb2xlIjoiVVNFUiJ9.Hp0GVeOKU1eDNINkDxNoTeQsKyOu1PsxnnexQoevNB0";
 
     @Test
     public void test01(){
@@ -40,6 +39,8 @@ public class _03_SprinGularGetRequest {
         Response response= given().header("Authorization", accessToken)
                 .when().get(sprinGularURL + "/api/orders?orderid=4500");
         response.prettyPrint();
+
+        Assert.assertEquals(response.statusCode(),200);
     }
 
 }
