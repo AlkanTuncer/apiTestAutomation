@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.*;
@@ -83,6 +85,61 @@ public class _06_SprinGularTestWithPath {
         assertEquals(email,"arivera2@joomla.org");
         assertEquals(role,"USER");
         assertEquals(fullName,"MrinmoyMajumdar");
+
+    }
+
+    /*
+    "items": [
+        {
+            "id": 0,
+            "lastName": "baba",
+            "firstName": "sadri",
+            "email": "string.gmail",
+            "avatar": "tests",
+            "jobTitle": "baba",
+            "department": "IT",
+            "managerId": 0,
+            "phone": "1234567",
+            "address1": "no:17",
+            "address2": "ayrancı",
+            "city": "ankara",
+            "state": "string",
+            "postalCode": "06200",
+            "country": "Turkey"
+        }
+     */
+
+    @Test
+    public void getAllEmployeeWithPath(){
+        Response response = given().header("Authorization",accessToken)
+                           .and().queryParam("size",50)
+                           .when().get("/api/employees");
+
+        assertEquals(response.statusCode(),200);
+        assertEquals(response.getHeader("Content-Type"),"application/json;charset=UTF-8");
+
+        int firstEmployeeId = response.path("items.id[0]");
+        String firstEmployeeFirstName = response.path("items.firstName[0]");
+        String thirtyNinethEmployeeFirstName = response.path("items.firstName[38]");
+
+        System.out.println("firstEmployeeId = " + firstEmployeeId);
+        System.out.println("firstEmployeeFirstName = " + firstEmployeeFirstName);
+        System.out.println("thirtyNinethEmployeeFirstName = " + thirtyNinethEmployeeFirstName);
+
+        List<String> employeesFirstNames = response.path("items.firstName");
+        System.out.println("employeesFirstNames = " + employeesFirstNames);
+
+        List<Integer> employeesIDs = response.path("items.id");
+        System.out.println("employeesIDs = " + employeesIDs);
+
+        // iter  --> foreach cagırır
+        // itar  --> for cagırır
+
+        for (Integer employeesID : employeesIDs) {
+            if (employeesID == 75){
+                System.out.println("employeesID = " + employeesID);
+            }
+        }
 
     }
 
