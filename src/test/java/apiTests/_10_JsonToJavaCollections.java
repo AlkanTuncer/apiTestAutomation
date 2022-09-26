@@ -61,6 +61,7 @@ public class _10_JsonToJavaCollections {
         assertEquals(patch,0.0);
     }
 
+    /*
     @Test
     public void allEmployeeListOfMap(){
         Response response = given().header("Authorization",accessToken)
@@ -79,6 +80,21 @@ public class _10_JsonToJavaCollections {
         List<Map<String,Object>> allEmployeesList = response.body().as(List.class);
         System.out.println("allEmployeesList = " + allEmployeesList);
         // Response'umuz bu yönteme uygun degil. Array'le baslamıyor bir obje ile baslıyor.
+    }
+     */
+
+    @Test
+    public void allBookingIdsToListOfMap(){
+        Response response = given().get(ConfigurationReader.get("herokuURL")+"/booking");
+        assertEquals(response.statusCode(),200);
+
+        // we need to de-serialize Json response to List of Maps
+        List<Map<String,Object>> allBookingsIdList = response.body().as(List.class);
+        System.out.println("allBookingsIdList = " + allBookingsIdList);
+
+        System.out.println("1.Elementin value'su : "+allBookingsIdList.get(0).get("bookingid"));
+        System.out.println("7.Elementin value'su : "+allBookingsIdList.get(6).get("bookingid"));
+
     }
 
 }
