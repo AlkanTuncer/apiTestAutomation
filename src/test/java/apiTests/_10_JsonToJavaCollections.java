@@ -92,8 +92,14 @@ public class _10_JsonToJavaCollections {
         List<Map<String,Object>> allBookingsIdList = response.body().as(List.class);
         System.out.println("allBookingsIdList = " + allBookingsIdList);
 
+        // print bookingids
         System.out.println("1.Elementin value'su : "+allBookingsIdList.get(0).get("bookingid"));
         System.out.println("7.Elementin value'su : "+allBookingsIdList.get(6).get("bookingid"));
+        System.out.println("5.Elementin value'su : "+allBookingsIdList.get(4).get("bookingid"));
+
+        // save the 5.bookingid in map
+        Map<String,Object> bookingId_5 = allBookingsIdList.get(4);
+        System.out.println("bookingId_5 = " + bookingId_5);
 
     }
 
