@@ -78,7 +78,7 @@ public class _10_JsonToJavaCollections {
 
         List<Map<String,Object>> allEmployeesList = response.body().as(List.class);
         System.out.println("allEmployeesList = " + allEmployeesList);
-
+        // Response'umuz bu yönteme uygun degil. Array'le baslamıyor bir obje ile baslıyor.
     }
 
 }
