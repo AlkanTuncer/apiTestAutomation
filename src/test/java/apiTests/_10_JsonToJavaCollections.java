@@ -79,7 +79,6 @@ public class _10_JsonToJavaCollections {
 
         List<Map<String,Object>> allEmployeesList = response.body().as(List.class);
         System.out.println("allEmployeesList = " + allEmployeesList);
-        // Response'umuz bu yönteme uygun degil. Array'le baslamıyor bir obje ile baslıyor.
     }
      */
 
@@ -100,6 +99,46 @@ public class _10_JsonToJavaCollections {
         // save the 5.bookingid in map
         Map<String,Object> bookingId_5 = allBookingsIdList.get(4);
         System.out.println("bookingId_5 = " + bookingId_5);
+
+    }
+
+    @Test
+    public void productsToMap(){
+        Response response = given().header("Authorization",accessToken)
+                           .when().get("/api/products");
+        assertEquals(response.statusCode(),200);
+
+        // de-seralize JSON response to Java Map
+        Map<String,Object> productMap = response.body().as(Map.class);
+        System.out.println(productMap.get("operationStatus"));
+        System.out.println(productMap.get("first"));
+        System.out.println(productMap.get("pageSize"));
+        System.out.println(productMap.get("totalPages"));
+        System.out.println(productMap.get("totalItems"));
+        System.out.println(productMap.get("sort"));
+        System.out.println(productMap.get("items"));
+
+        List<Map<String,Object>> itemsList = (List<Map<String, Object>>) productMap.get("items");
+
+        System.out.println(itemsList.get(0).get("id"));
+        System.out.println(itemsList.get(1).get("id"));
+        System.out.println(itemsList.get(2).get("id"));
+        System.out.println(itemsList.get(0).get("productCode"));
+
+         assertEquals(itemsList.get(0).get("id"),601.0);
+         assertEquals(itemsList.get(0).get("productCode"),"P1");
+         assertEquals(itemsList.get(0).get("productName"),"Nikon D810");
+         assertEquals(itemsList.get(0).get("description"),null);
+         assertEquals(itemsList.get(0).get("standardCost"),1167.0);
+         assertEquals(itemsList.get(0).get("listPrice"),1123.0);
+         assertEquals(itemsList.get(0).get("targetLevel"),75.0);
+         assertEquals(itemsList.get(0).get("reorderLevel"),10.0);
+         assertEquals(itemsList.get(0).get("minimumReorderQuantity"),10.0);
+         assertEquals(itemsList.get(0).get("quantityPerUnit"),"50");
+         assertEquals(itemsList.get(0).get("discontinued"),1.0);
+         assertEquals(itemsList.get(0).get("category"),"Camera");
+
+
 
     }
 
