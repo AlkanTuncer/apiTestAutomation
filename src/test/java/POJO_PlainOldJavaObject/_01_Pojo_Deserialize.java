@@ -100,14 +100,14 @@ public class _01_Pojo_Deserialize {
     @Test
     public void booking15ToPOJO(){
 
-        Response response = given().accept("application/json").when().get(ConfigurationReader.get("herokuURL")+"/booking/1945");
+        Response response = given().accept("application/json").when().get(ConfigurationReader.get("herokuURL")+"/booking/656");
         assertEquals(response.statusCode(),200);
 
-        Booking1945 booking1945 = response.body().as(Booking1945.class);
-        //System.out.println(booking1945);
+        Booking booking = response.body().as(Booking.class);
+        //System.out.println(booking);
 
-        System.out.println("booking1945.getFirstname() = " + booking1945.getFirstname());
-        System.out.println("booking1945.getLastname() = " + booking1945.getLastname());
+        System.out.println("booking.getFirstname() = " + booking.getFirstname());
+        System.out.println("booking.getLastname() = " + booking.getLastname());
 
     }
 
