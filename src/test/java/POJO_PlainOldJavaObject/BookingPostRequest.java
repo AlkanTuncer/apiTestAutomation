@@ -26,10 +26,10 @@ public class BookingPostRequest {
       "totalprice":"1250",
       "depositpaid":true,
       "bookingdates":{
-                "checkin": "2022-01-01"
+                "checkin": "2022-01-01",
                 "checkout": "2023-01-01"
-                }
-      "additionalneeds":"dinner",
+                },
+      "additionalneeds":"dinner"
    }
     When user sends POST request to '/booking'
     Then status code 200
