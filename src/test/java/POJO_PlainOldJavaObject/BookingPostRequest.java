@@ -56,6 +56,8 @@ public class BookingPostRequest {
                 .and().body(booking)
                 .when().post("/booking");
 
+        response.prettyPrint();
+
         assertEquals(response.statusCode(),200);
 
         String firstName = response.jsonPath().getString("booking.firstname");
