@@ -125,17 +125,17 @@ public class _01_Pojo_Deserialize {
                 "    } ";
 
         Map<String,Object> map = gson.fromJson(ourJsonData,Map.class);
-        System.out.println(map);
+        System.out.println("Map --> "+map);
 
         Version version = gson.fromJson(ourJsonData,Version.class);
-        System.out.println(version);
+        System.out.println("POJO ---> "+version);
 
         // -------SERIALIZATION-------
         // Java Collections or POJO to Json
 
         Version versionNew = new Version("1.1.0",53,17,3);
         String anotherVersion = gson.toJson(versionNew);
-        System.out.println(anotherVersion);
+        System.out.println("Serialization - Java to Json --> "+anotherVersion);
 
     }
 
