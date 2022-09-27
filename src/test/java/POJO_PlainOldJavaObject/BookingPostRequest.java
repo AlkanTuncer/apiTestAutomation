@@ -102,6 +102,9 @@ public class BookingPostRequest {
 
         assertEquals(response.statusCode(),200);
 
+        String checkIn = response.jsonPath().getString("booking.bookingdates.checkin");
+        System.out.println("checkIn = " + checkIn);
+
 
     }
 
