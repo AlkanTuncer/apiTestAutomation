@@ -6,6 +6,10 @@ import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.*;
@@ -73,6 +77,31 @@ public class BookingPostRequest {
         System.out.println("depositPaid = " + depositPaid);
         System.out.println("bookingDates = " + bookingDates);
         System.out.println("additionalNeeds = " + additionalNeeds);
+    }
+
+    @Test
+    public void postBookingHerokuWithMap(){
+        // Create a map to keep request json body information
+        Map<String,Object> bookingDatesMap = new HashMap<>();
+        bookingDatesMap.put("checkin","2022-01-01");
+        bookingDatesMap.put("checkout","2023-01-01");
+
+        Map<String,Object> requestBodyMap = new HashMap<>();
+        requestBodyMap.put("firstname","GuiderSoft53");
+        requestBodyMap.put("lastname","Hunters");
+        requestBodyMap.put("totalprice",5353);
+        requestBodyMap.put("depositpaid",false);
+        requestBodyMap.put("bookingdates",bookingDatesMap);
+        requestBodyMap.put("additionalneeds","lunch");
+
+        Response response = given().header("Content-Type","application/json")
+                .and().body(requestBodyMap)
+                .when().post("/booking");
+
+        response.prettyPrint();
+
+        assertEquals(response.statusCode(),200);
+
 
     }
 
