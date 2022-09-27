@@ -108,4 +108,53 @@ public class BookingPostRequest {
 
     }
 
+    @Test
+    public void postNewBooking(){
+        Bookingdates bookingdates = new Bookingdates("2022-01-01","2023-01-01");
+        Booking booking = new Booking("Alkan","Tuncer",5300,true,bookingdates,"breakfast");
+
+        Response response = given().header("Accept","application/json")
+                .header("Content-Type","application/json")
+                .and().body(booking)
+                .when().post("/booking");
+
+        response.prettyPrint();
+
+        assertEquals(response.statusCode(),200);
+
+        String bookingId = response.jsonPath().getString("bookingid");
+        String firstName = response.jsonPath().getString("booking.firstname");
+        String lastName = response.jsonPath().getString("booking.lastname");
+        String totalPrice = response.jsonPath().getString("booking.totalprice");
+        String depositPaid = response.jsonPath().getString("booking.depositpaid");
+        String bookingDates = response.jsonPath().getString("booking.bookingdates");
+        String additionalNeeds = response.jsonPath().getString("booking.additionalneeds");
+
+        System.out.println("bookingId = " + bookingId);
+        System.out.println("firstName = " + firstName);
+        System.out.println("lastName = " + lastName);
+        System.out.println("totalPrice = " + totalPrice);
+        System.out.println("depositPaid = " + depositPaid);
+        System.out.println("bookingDates = " + bookingDates);
+        System.out.println("additionalNeeds = " + additionalNeeds);
+
+
+        Map<String,Object> bookingdatesMap = new HashMap<>();
+        bookingdatesMap.put("checkin","1992-03-04");
+        bookingdatesMap.put("checkout","1992-10-04");
+
+        Map<String,Object> bookingMap = new HashMap<>();
+        bookingMap.put("firstname","Dante");
+        bookingMap.put("lastname","Jugking");
+        bookingMap.put("totalprice",5353);
+        bookingMap.put("depositpaid",false);
+        bookingMap.put("bookingdates",bookingdatesMap);
+        bookingMap.put("additionalneeds","dumbell&barbell");
+
+        Map<String,Object> responseMap = new HashMap<>();
+        responseMap.put("bookingId",response.jsonPath().getString("bookingid"));
+        responseMap.put("booking",bookingMap);
+
+    }
+
 }
