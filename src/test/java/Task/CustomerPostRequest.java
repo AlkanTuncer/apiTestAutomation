@@ -90,10 +90,11 @@ public class CustomerPostRequest {
     public void customerPostAutoTest(){
 
         CustomerPost customerPost = new CustomerPost();
-        int id = 4000;
-        for (int i = id; i < 4011; i++) {
+        int id = 1400;
+        int count = 1;
+        for (int i = id; i < 1454; i++) {
             customerPost.setId(i);
-            customerPost.setFirstName("Cristiano");
+            customerPost.setFirstName("Cristiano"+count++);
             customerPost.setLastName("Ronaldo");
             customerPost.setCompany("guidersoft");
             customerPost.setEmail("string@string.com");
