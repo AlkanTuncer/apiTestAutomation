@@ -42,4 +42,18 @@ public class DeleteRequest {
                 .log().all();
     }
 
+    @Test
+    public void deleteGivenIds(){
+        TokenGenerator tokenGenerator = new TokenGenerator();
+        accessToken = tokenGenerator.TokenGenerator("guidersoft","quality_hunter");
+
+        for (int i = 1000; i < 1320; i++) {
+            given().header("Authorization",accessToken)
+                    .pathParam("id",i)
+                    .when().delete("/api/customers/{id}")
+                    .then()
+                    .statusCode(200);
+        }
+    }
+
 }
