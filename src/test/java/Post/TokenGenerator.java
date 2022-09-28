@@ -13,7 +13,7 @@ public class TokenGenerator {
                 .header("Content-Type","application/json")
                 .and().body(tokenPost)
                 .when().post("/session");
-        response.prettyPrint();
+        //response.prettyPrint();
 
         String token = response.jsonPath().getString("item.token");
         return token;
