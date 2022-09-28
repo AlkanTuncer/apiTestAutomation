@@ -89,6 +89,28 @@ public class CustomerPostRequest {
     @Test
     public void customerPostAutoTest(){
 
+        CustomerPost customerPost = new CustomerPost();
+        int id = 4000;
+        for (int i = id; i < 4011; i++) {
+            customerPost.setId(i);
+            customerPost.setFirstName("Cristiano");
+            customerPost.setLastName("Ronaldo");
+            customerPost.setCompany("guidersoft");
+            customerPost.setEmail("string@string.com");
+            customerPost.setPhone("7");
+            customerPost.setAddress1("Manchester");
+            customerPost.setAddress2("United");
+            customerPost.setPostalCode("07007");
+            customerPost.setCity("Rize");
+            customerPost.setState("");
+
+            Response response = given().header("Authorization",TokenGenerator("guidersoft","quality_hunter"))
+                    .header("Accept","application/json")
+                    .header("Content-Type","application/json")
+                    .and().body(customerPost)
+                    .when().post("/api/customers");
+            response.prettyPrint();
+        }
     }
 
     public static String TokenGenerator(String username,String password){
