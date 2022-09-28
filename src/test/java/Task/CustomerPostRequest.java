@@ -75,6 +75,15 @@ public class CustomerPostRequest {
 
         response.prettyPrint();
         assertEquals(response.statusCode(),200);
+
+        String operationStatus = response.path("operationStatus");
+        String operationMessage = response.path("operationMessage");
+
+        System.out.println("operationStatus = " + operationStatus);
+        System.out.println("operationMessage = " + operationMessage);
+
+        assertEquals(operationStatus,"SUCCESS");
+        assertEquals(operationMessage,"Customer Added");
     }
 
     public static String TokenGenerator(String username,String password){
@@ -84,7 +93,7 @@ public class CustomerPostRequest {
                 .header("Content-Type","application/json")
                 .and().body(tokenPost)
                 .when().post("/session");
-        response.prettyPrint();
+       // response.prettyPrint();
 
         String token = response.jsonPath().getString("item.token");
         return token;
