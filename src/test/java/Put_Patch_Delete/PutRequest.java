@@ -1,7 +1,5 @@
 package Put_Patch_Delete;
 
-import Post.TokenPost;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,7 +11,6 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
-import static org.testng.Assert.*;
 
 public class PutRequest {
 
@@ -63,6 +60,33 @@ public class PutRequest {
                 .body(jsonBodyMap)
                 .when()
                 .put("/booking/1066")
+                .then().log().all()
+                .assertThat().statusCode(200);
+    }
+
+    @Test
+    public void herokuPatchTest(){
+        // Create inner json body first -> innermap for the put request
+        Map<String,Object> bookingdatesMap = new HashMap<>();
+        bookingdatesMap.put("checkin","5018-03-04");
+        bookingdatesMap.put("checkout","5019-03-04");
+
+        Map<String,Object> jsonBodyMap = new HashMap<>();
+        jsonBodyMap.put("firstname","Dante");
+        jsonBodyMap.put("lastname","Alighieri");
+        jsonBodyMap.put("bookingdates",bookingdatesMap);
+        jsonBodyMap.put("additionalneeds","Milk");
+
+        given().log().all()
+                .and()
+                .header("Authorization",accessToken)
+                .header("Accept","application/json")
+                .header("Content-Type","application/json")
+                .header("Cookie","token=e3bcc6b67d9ff39")
+                .and()
+                .body(jsonBodyMap)
+                .when()
+                .patch("/booking/1066")
                 .then().log().all()
                 .assertThat().statusCode(200);
     }
