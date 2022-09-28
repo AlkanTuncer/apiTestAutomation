@@ -52,7 +52,30 @@ public class CustomerPostRequest {
 
     }
 
+    @Test
+    public void customerPostTest(){
+        CustomerPost customerPost = new CustomerPost();
+        customerPost.setId(353);
+        customerPost.setFirstName("Cristiano");
+        customerPost.setLastName("Ronaldo");
+        customerPost.setCompany("guidersoft");
+        customerPost.setEmail("string@string.com");
+        customerPost.setPhone("7");
+        customerPost.setAddress1("Manchester");
+        customerPost.setAddress2("United");
+        customerPost.setPostalCode("07007");
+        customerPost.setCity("Rize");
+        customerPost.setState("");
 
+        Response response = given().header("Authorization",TokenGenerator("guidersoft","quality_hunter"))
+                .header("Accept","application/json")
+                .header("Content-Type","application/json")
+                .and().body(customerPost)
+                .when().post("/api/customers");
+
+        response.prettyPrint();
+        assertEquals(response.statusCode(),200);
+    }
 
     public static String TokenGenerator(String username,String password){
         TokenPost tokenPost = new TokenPost(username,password);
