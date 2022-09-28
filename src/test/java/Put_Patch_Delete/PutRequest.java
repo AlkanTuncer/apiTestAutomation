@@ -72,8 +72,8 @@ public class PutRequest {
         bookingdatesMap.put("checkout","5019-03-04");
 
         Map<String,Object> jsonBodyMap = new HashMap<>();
-        jsonBodyMap.put("firstname","Dante");
-        jsonBodyMap.put("lastname","Alighieri");
+        jsonBodyMap.put("firstname","Kobe");
+        jsonBodyMap.put("lastname","Bryant");
         jsonBodyMap.put("bookingdates",bookingdatesMap);
         jsonBodyMap.put("additionalneeds","Milk");
 
