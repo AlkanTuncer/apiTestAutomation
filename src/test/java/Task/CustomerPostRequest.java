@@ -86,6 +86,11 @@ public class CustomerPostRequest {
         assertEquals(operationMessage,"Customer Added");
     }
 
+    @Test
+    public void customerPostAutoTest(){
+
+    }
+
     public static String TokenGenerator(String username,String password){
         TokenPost tokenPost = new TokenPost(username,password);
 
